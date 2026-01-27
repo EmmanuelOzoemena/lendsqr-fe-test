@@ -5,11 +5,11 @@ import DashboardSidebar from "../components/dashboardSidebar";
 
 const DashboardLayout: React.FC = () => {
   return (
-    <div>
+    <div className="dashboard-layout">
       <DashboardHeader />
-      <div>
+      <div className="dashboard-layout__container">
         <DashboardSidebar />
-        <main>
+        <main className="dashboard-layout__content">
           <Outlet />
         </main>
       </div>
