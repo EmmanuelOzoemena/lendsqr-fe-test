@@ -5,4 +5,8 @@
 @import "base/fonts";
 @import "base/global";
 
-@import "pages/login"
+@import "components/dashboard-header";
+@import "components/dashboard-sidebar";
+
+@import "pages/login";
+@import "pages/dashboard";

@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Illustration from "../../assets/sign-in-pic.png";
 
-const Login = () => {
+const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <div className="login">
@@ -96,7 +99,12 @@ const Login = () => {
               Forgot Password?
             </a>
 
-            <button className="login__btn">Log in</button>
+            <button
+              className="login__btn"
+              onClick={() => navigate("/dashboard")}
+            >
+              Log in
+            </button>
           </form>
         </div>
       </div>
