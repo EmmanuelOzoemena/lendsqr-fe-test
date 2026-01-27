@@ -1,7 +1,7 @@
 
 const Dashboard: React.FC = () => {
   return (
-    <div>
+    <div className="dashboard">
         
     </div>
   )

@@ -1,0 +1,15 @@
+.users-page {
+  &__title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #213F7D;
+    margin-bottom: 30px;
+  }
+
+  &__summary-grid {
+    display: flex;
+    gap: 26px;
+    flex-wrap: wrap; 
+    margin-bottom: 40px;
+  }
+}
