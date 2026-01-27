@@ -1,6 +1,9 @@
+import { useState } from "react";
 import Illustration from "../../assets/sign-in-pic.png";
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className="login">
       <div className="login__logo">
@@ -77,17 +80,23 @@ const Login = () => {
             </div>
 
             <div className="login__field">
-              <input type="password" placeholder="Password" />
-              <span className="login__show">Show</span>
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+              />
+              <span
+                className="login__show"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </span>
             </div>
 
             <a href="#" className="login__forgot">
               Forgot Password?
             </a>
 
-            <button type="submit" className="login__btn">
-              Log in
-            </button>
+            <button className="login__btn">Log in</button>
           </form>
         </div>
       </div>
