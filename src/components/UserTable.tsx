@@ -22,7 +22,7 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
                 </div>
               </th>
             ))}
-            <th></th> 
+            {/* <th></th>  */}
           </tr>
         </thead>
         <tbody>

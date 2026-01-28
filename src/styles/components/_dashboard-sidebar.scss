@@ -60,4 +60,22 @@
   &__dropdown-icon {
     font-size: 12px;
   }
+
+  @media (max-width: 1024px) {
+    width: 80px; 
+    &__text, &__dropdown-icon, &-title { display: none; }
+    &__item { justify-content: center; padding: 12px 0; }
+    &__icon { margin-right: 0; }
+  }
+
+  @media (max-width: 768px) {
+    display: none; 
+    &.mobile-open { 
+      display: block;
+      position: absolute;
+      z-index: 100;
+      width: 250px;
+      height: 100vh;
+    }
+  }
 }
