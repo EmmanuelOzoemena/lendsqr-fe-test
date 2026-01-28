@@ -1,6 +1,10 @@
-const DashboardSidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen: boolean;
+}
+
+const DashboardSidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   return (
-    <aside className="sidebar">
+   <aside className={`sidebar ${isOpen ? 'mobile-open' : ''}`}>
       {/* Switch Organization Section */}
       <div className="sidebar__item sidebar__item-org">
         <span className="sidebar__icon">

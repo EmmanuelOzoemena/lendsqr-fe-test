@@ -1,9 +1,21 @@
 import Avatar from "../assets/avatar.png";
 
-const DashboardHeader: React.FC = () => {
+interface HeaderProps {
+  onMenuClick: () => void;
+}
+
+const DashboardHeader: React.FC<HeaderProps> = ({ onMenuClick }) => {
   return (
     <header className="dashboard-header">
       <div className="dashboard-header__left">
+
+      {/* Mobile Menu Icon */}
+        <div className="dashboard-header__menu-icon" onClick={onMenuClick}>
+           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#213F7D" strokeWidth="2">
+             <path d="M3 12h18M3 6h18M3 18h18" />
+           </svg>
+        </div>
+        
         <div className="dashboard-header__logo">
           <svg
             width="174"

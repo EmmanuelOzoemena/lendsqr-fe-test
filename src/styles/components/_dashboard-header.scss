@@ -10,6 +10,16 @@
   align-items: center;
   justify-content: space-between;
 
+  &__menu-icon {
+    display: none; 
+    cursor: pointer;
+    margin-right: 15px;
+
+    @media (max-width: 768px) {
+      display: block; 
+    }
+  }
+
   &__left {
     display: flex;
     align-items: center;
