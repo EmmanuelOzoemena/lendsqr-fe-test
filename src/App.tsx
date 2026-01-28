@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/Login/Login";
-// import Dashboard from "./pages/Dashboard/Dashboard";
+import UserDetailsPage from "./pages/UsersDetails/UserDetailsPage";
 import DashboardLayout from "./layout/DashboardLayout";
 import Users from "./pages/Users/Users";
 
@@ -13,8 +13,7 @@ function App() {
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<Navigate to="/users" />} />
           <Route path="/users" element={<Users />} />
-          {/* 
-           <Route path="/users/:id" element={<UserDetails />} /> */}
+          <Route path="/users/:id" element={<UserDetailsPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/login" />} />

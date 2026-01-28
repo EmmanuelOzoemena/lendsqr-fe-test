@@ -1,0 +1,128 @@
+.user-details-page {
+  padding: 20px;
+
+  .back-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    color: #545F7D;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+
+    .page-title {
+      color: #213F7D;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 20px;
+
+      button {
+        padding: 12px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        background: transparent;
+      }
+
+      .btn-blacklist {
+        border: 1px solid #E4033B;
+        color: #E4033B;
+      }
+
+      .btn-activate {
+        border: 1px solid #39CDCC;
+        color: #39CDCC;
+      }
+    }
+  }
+
+  .profile-summary-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(33, 63, 125, 0.06);
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    padding: 30px 30px 0 30px;
+    margin-bottom: 30px;
+
+    &__top {
+      display: flex;
+      align-items: center;
+      padding-bottom: 40px;
+      gap: 30px;
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        .avatar-container {
+          width: 100px;
+          height: 100px;
+          background: #D5D6D9;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        h3 { color: #213F7D; font-size: 22px; margin-bottom: 5px; }
+        p { color: #545F7D; font-size: 12px; }
+      }
+
+      .divider {
+        width: 1px;
+        height: 80px;
+        background: rgba(84, 95, 125, 0.2);
+      }
+
+      .user-tier {
+        p { color: #545F7D; font-size: 14px; margin-bottom: 10px; }
+        .stars img { width: 16px; margin-right: 2px; }
+      }
+
+      .bank-info {
+        h3 { color: #213F7D; font-size: 22px; margin-bottom: 5px; }
+        p { color: #213F7D; font-size: 12px; }
+      }
+    }
+
+    &__tabs {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        background: none;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s;
+
+        &.active {
+          color: #39CDCC;
+          border-bottom: 2px solid #39CDCC;
+        }
+      }
+    }
+  }
+
+  .details-content-card {
+    background: #FFFFFF;
+    padding: 30px;
+    border: 1px solid rgba(33, 63, 125, 0.06);
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+  }
+}

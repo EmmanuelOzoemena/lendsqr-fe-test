@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { User } from "../types/user";
+import { useNavigate } from "react-router-dom";
 import FilterIcon from "../assets/icons/filter-icon.png";
 import MoreIcon from "../assets/icons/more-vertical.png";
 import UserActionsMenu from "./UserActionsMenu";
@@ -22,6 +23,13 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
   // Inside UserTable component
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  // Inside your component
+  const navigate = useNavigate();
+
+  const handleViewDetails = (userId: string) => {
+    navigate(`/users/${userId}`);
+  };
 
   const toggleMenu = (userId: string) => {
     setActiveMenuId(activeMenuId === userId ? null : userId);
@@ -92,7 +100,8 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
 
                   {activeMenuId === user.id && (
                     <UserActionsMenu
-                      onViewDetails={() => console.log("View", user.id)}
+                      onViewDetails={() => handleViewDetails(user.id)}
+                      // onViewDetails={() => console.log("View", user.id)}
                       onBlacklist={() => console.log("Blacklist", user.id)}
                       onActivate={() => console.log("Activate", user.id)}
                     />
