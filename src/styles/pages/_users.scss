@@ -2,14 +2,20 @@
   &__title {
     font-size: 24px;
     font-weight: 500;
-    color: #213F7D;
+    color: #213f7d;
     margin-bottom: 30px;
   }
 
   &__summary-grid {
     display: flex;
     gap: 26px;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     margin-bottom: 40px;
+  }
+
+  &__table-wrapper {
+    margin-top: 40px;
+    width: 100%;
+    overflow-x: auto; 
   }
 }

@@ -1,12 +1,43 @@
+import { useState, useEffect } from "react";
 import SummaryCard from "../../components/SummaryCard";
-
-// Import your icons here
 import UsersIcon from "../../assets/icons/users-multi.png";
 import ActiveUsersIcon from "../../assets/icons/users-active.png";
 import LoansIcon from "../../assets/icons/users-loans.png";
 import SavingsIcon from "../../assets/icons/users-savings.png";
 
+import UserTable from "../../components/UserTable";
+import type { User } from "../../types/user";
+
 const Users: React.FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+ useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/data/users.json');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch user data');
+        }
+
+        const data = await response.json();
+        setUsers(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Something went wrong');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  if (isLoading) return <div>Loading users...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   const summaryData = [
     {
       title: "USERS",
@@ -50,7 +81,9 @@ const Users: React.FC = () => {
         ))}
       </div>
 
-      {/* The Table Section will go here next */}
+      <div className="users-page__table-wrapper">
+        <UserTable users={users} />
+      </div>
     </div>
   );
 };
