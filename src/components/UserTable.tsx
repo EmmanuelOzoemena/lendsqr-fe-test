@@ -3,6 +3,7 @@ import type { User } from "../types/user";
 import FilterIcon from "../assets/icons/filter-icon.png";
 import MoreIcon from "../assets/icons/more-vertical.png";
 import UserActionsMenu from "./UserActionsMenu";
+import FilterModal from "./FilterModal";
 
 interface UserTableProps {
   users: User[];
@@ -20,6 +21,7 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
 
   // Inside UserTable component
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const toggleMenu = (userId: string) => {
     setActiveMenuId(activeMenuId === userId ? null : userId);
@@ -30,12 +32,35 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
       <table className="table-container__user-table">
         <thead>
           <tr>
-            {headers.map((header) => (
+            {/* {headers.map((header) => (
               <th key={header}>
                 <div className="header-content">
                   {header}
+                  <img
+                    src={FilterIcon}
+                    alt="filter"
+                    className="filter-icon"
+                    onClick={() => setIsFilterOpen(!isFilterOpen)}
+                  />
+                  {isFilterOpen && <FilterModal />}
+                </div>
+              </th>
+            ))} */}
+
+            {headers.map((header) => (
+              <th key={header} style={{ position: "relative" }}>
+                <div
+                  className="header-content"
+                  onClick={() =>
+                    header === "ORGANIZATION" && setIsFilterOpen(!isFilterOpen)
+                  }
+                >
+                  <span>{header}</span>
                   <img src={FilterIcon} alt="filter" className="filter-icon" />
                 </div>
+
+                {/* Only show the modal here if this specific header is Organization */}
+                {header === "ORGANIZATION" && isFilterOpen && <FilterModal />}
               </th>
             ))}
             <th></th>
@@ -57,7 +82,6 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
                 </span>
               </td>
               <td>
-
                 <div className="actions-cell">
                   <img
                     src={MoreIcon}

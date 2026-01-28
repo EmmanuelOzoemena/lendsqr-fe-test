@@ -27,15 +27,16 @@
 
         .filter-icon {
           width: 14px;
+          cursor: pointer;
         }
       }
 
       @media (max-width: 1024px) {
-        font-size: 11px;    // Slightly smaller font for tighter screens
-        
+        font-size: 11px;
+
         .header-content {
           gap: 4px;
-          
+
           .filter-icon {
             width: 12px;
           }
@@ -63,7 +64,7 @@
       }
 
       @media (max-width: 768px) {
-        font-size: 13px;    // Smaller font on mobile
+        font-size: 13px; // Smaller font on mobile
       }
     }
   }
@@ -94,7 +95,7 @@
 
   @media (max-width: 768px) {
     padding: 15px;
-    margin: 0 -20px; 
+    margin: 0 -20px;
     border-radius: 0;
   }
 }

@@ -1,0 +1,68 @@
+.filter-modal {
+  position: absolute;
+  top: 45px; 
+  left: 0; 
+  background: #ffffff;
+  border: 1px solid rgba(84, 95, 125, 0.14);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  padding: 30px 20px;
+  width: 270px;
+  z-index: 100; 
+
+  text-align: left;
+
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #545f7d;
+    }
+
+    input,
+    select {
+      border: 1px solid #213f7d26;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+      color: #213f7d;
+      outline: none;
+
+      &::placeholder {
+        color: rgba(84, 95, 125, 0.7);
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 10px;
+
+    button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-reset {
+      background: #ffffff;
+      border: 1px solid #545f7d;
+      color: #545f7d;
+    }
+
+    .btn-filter {
+      background: #39cdcc;
+      border: 1px solid #39cdcc;
+      color: #ffffff;
+    }
+  }
+}
