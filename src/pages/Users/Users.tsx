@@ -7,26 +7,35 @@ import SavingsIcon from "../../assets/icons/users-savings.png";
 
 import UserTable from "../../components/UserTable";
 import type { User } from "../../types/user";
+import Pagination from "../../components/Pagination";
 
 const Users: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
- useEffect(() => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(100);
+
+  // Calculate indices
+  const indexOfLastUser = currentPage * itemsPerPage;
+  const indexOfFirstUser = indexOfLastUser - itemsPerPage;
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+
+  useEffect(() => {
     const fetchUsers = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('/data/users.json');
-        
+        const response = await fetch("/data/users.json");
+
         if (!response.ok) {
-          throw new Error('Failed to fetch user data');
+          throw new Error("Failed to fetch user data");
         }
 
         const data = await response.json();
         setUsers(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Something went wrong');
+        setError(err instanceof Error ? err.message : "Something went wrong");
       } finally {
         setIsLoading(false);
       }
@@ -82,7 +91,19 @@ const Users: React.FC = () => {
       </div>
 
       <div className="users-page__table-wrapper">
-        <UserTable users={users} />
+        {/* <UserTable users={users} /> */}
+        <UserTable users={currentUsers} /> {/* Only pass the sliced users */}
+        
+        <Pagination
+          totalItems={users.length}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+          onItemsPerPageChange={(num) => {
+            setItemsPerPage(num);
+            setCurrentPage(1); // Reset to page 1 when limit changes
+          }}
+        />
       </div>
     </div>
   );
