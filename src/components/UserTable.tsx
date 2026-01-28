@@ -89,13 +89,13 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
                   {user.status}
                 </span>
               </td>
-              <td>
+              <td onClick={() => toggleMenu(user.id)}>
                 <div className="actions-cell">
                   <img
                     src={MoreIcon}
                     alt="more"
                     className="more-icon"
-                    onClick={() => toggleMenu(user.id)}
+                    
                   />
 
                   {activeMenuId === user.id && (
