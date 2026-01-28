@@ -1,13 +1,29 @@
-import type { User } from '../types/user';
-import FilterIcon from '../assets/icons/filter-icon.png';
-import MoreIcon from '../assets/icons/more-vertical.png'; 
+import { useState } from "react";
+import type { User } from "../types/user";
+import FilterIcon from "../assets/icons/filter-icon.png";
+import MoreIcon from "../assets/icons/more-vertical.png";
+import UserActionsMenu from "./UserActionsMenu";
 
 interface UserTableProps {
   users: User[];
 }
 
 const UserTable: React.FC<UserTableProps> = ({ users }) => {
-  const headers = ['ORGANIZATION', 'USERNAME', 'EMAIL', 'PHONE NUMBER', 'DATE JOINED', 'STATUS'];
+  const headers = [
+    "ORGANIZATION",
+    "USERNAME",
+    "EMAIL",
+    "PHONE NUMBER",
+    "DATE JOINED",
+    "STATUS",
+  ];
+
+  // Inside UserTable component
+  const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
+
+  const toggleMenu = (userId: string) => {
+    setActiveMenuId(activeMenuId === userId ? null : userId);
+  };
 
   return (
     <div className="table-container">
@@ -22,7 +38,7 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
                 </div>
               </th>
             ))}
-            {/* <th></th>  */}
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -34,12 +50,30 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
               <td>{user.phoneNumber}</td>
               <td>{user.dateJoined}</td>
               <td>
-                <span className={`status-badge status-badge-${user.status.toLowerCase()}`}>
+                <span
+                  className={`status-badge status-badge-${user.status.toLowerCase()}`}
+                >
                   {user.status}
                 </span>
               </td>
               <td>
-                <img src={MoreIcon} alt="more" className="more-icon" />
+
+                <div className="actions-cell">
+                  <img
+                    src={MoreIcon}
+                    alt="more"
+                    className="more-icon"
+                    onClick={() => toggleMenu(user.id)}
+                  />
+
+                  {activeMenuId === user.id && (
+                    <UserActionsMenu
+                      onViewDetails={() => console.log("View", user.id)}
+                      onBlacklist={() => console.log("Blacklist", user.id)}
+                      onActivate={() => console.log("Activate", user.id)}
+                    />
+                  )}
+                </div>
               </td>
             </tr>
           ))}

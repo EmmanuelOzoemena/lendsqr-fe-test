@@ -1,0 +1,45 @@
+.user-actions-menu {
+  position: absolute;
+  right: 30px;
+  top: 40px;
+  background: #ffffff;
+  border: 1px solid rgba(84, 95, 125, 0.04);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  padding: 10px 0;
+  z-index: 10;
+  width: 180px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(84, 95, 125, 0.05);
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #545f7d;
+    }
+  }
+}
+
+// Make the cell relative so the menu positions itself correctly
+.actions-cell {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+
+  cursor: pointer;
+}
