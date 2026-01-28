@@ -1,22 +1,26 @@
-const UserInfoContent: React.FC = () => {
+interface UserInfoProps {
+  userData: any; // Ideally use your User interface
+}
+
+const UserInfoContent: React.FC<UserInfoProps> = ({ userData }) => {
   return (
     <div className="user-info-content">
-      {/* Personal Information Section */}
       <section className="info-section">
         <h4 className="info-section__title">Personal Information</h4>
         <div className="info-grid">
           <div className="info-item">
             <h5>FULL NAME</h5>
-            <p>Grace Effiom</p>
+            <p>{userData.username}</p>
           </div>
           <div className="info-item">
             <h5>PHONE NUMBER</h5>
-            <p>07060780922</p>
+            <p>{userData.phoneNumber}</p>
           </div>
           <div className="info-item">
             <h5>EMAIL ADDRESS</h5>
-            <p>grace@gmail.com</p>
+            <p>{userData.email}</p>
           </div>
+
           <div className="info-item">
             <h5>BVN</h5>
             <p>07060780922</p>
@@ -39,7 +43,6 @@ const UserInfoContent: React.FC = () => {
           </div>
         </div>
       </section>
-
       <hr />
 
       {/* Education and Employment Section */}
@@ -85,15 +88,15 @@ const UserInfoContent: React.FC = () => {
         <div className="info-grid">
           <div className="info-item">
             <h5>TWITTER</h5>
-            <p>@grace_effiom</p>
+            <p>@{userData.username}</p>
           </div>
           <div className="info-item">
             <h5>FACEBOOK</h5>
-            <p>Grace Effiom</p>
+            <p>{userData.username}</p>
           </div>
           <div className="info-item">
             <h5>INSTAGRAM</h5>
-            <p>@grace_effiom</p>
+            <p>@{userData.username}</p>
           </div>
         </div>
       </section>

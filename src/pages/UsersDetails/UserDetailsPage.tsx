@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import StarFilled from "../../assets/icons/star-filled.png";
 import StarOutline from "../../assets/icons/star-outline.png";
@@ -7,6 +7,8 @@ import UserInfoContent from "../../components/UserInfoContent";
 const UserDetails: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const [user, setUser] = useState<any>(null); 
+  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("General Details");
 
   const tabs = [
@@ -17,6 +19,32 @@ const UserDetails: React.FC = () => {
     "Savings",
     "App and System",
   ];
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("/data/users.json");
+        const allUsers = await response.json();
+
+        // Find the specific user by ID
+        const selectedUser = allUsers.find((u: any) => u.id === id);
+
+        if (selectedUser) {
+          setUser(selectedUser);
+        }
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getUserData();
+  }, [id]);
+
+  if (loading) return <div className="loading">Loading User Profile...</div>;
+  if (!user) return <div className="error">User not found</div>;
 
   return (
     <div className="user-details-page">
@@ -67,8 +95,8 @@ const UserDetails: React.FC = () => {
               </svg>
             </div>
             <div className="name-id">
-              <h3>Grace Effiom</h3>
-              <p>LSQFf587g90</p>
+              <h3>{user.username}</h3> 
+              <p>{user.id}</p>
             </div>
           </div>
 
@@ -107,7 +135,7 @@ const UserDetails: React.FC = () => {
       {/* Detailed Info Card */}
       <div className="details-content-card">
         {activeTab === "General Details" ? (
-          <UserInfoContent />
+       <UserInfoContent userData={user} />
         ) : (
           <div className="empty-state">No data available for {activeTab}</div>
         )}
