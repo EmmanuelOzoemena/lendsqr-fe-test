@@ -1,5 +1,7 @@
+import type { User } from "../types/user";
+
 interface UserInfoProps {
-  userData: any; // Ideally use your User interface
+  userData: User; // Ideally use your User interface
 }
 
 const UserInfoContent: React.FC<UserInfoProps> = ({ userData }) => {

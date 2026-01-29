@@ -1,21 +1,21 @@
-@import "base/reset";
+@use "base/reset";
 
-@import "utils/variables";
+@use "utils/variables";
 
-@import "base/fonts";
-@import "base/global";
+@use "base/fonts";
+@use "base/global";
 
-@import "layouts/dashboard-layout";
+@use "layouts/dashboard-layout";
 
-@import "components/dashboard-header";
-@import "components/dashboard-sidebar";
-@import "components/summary-card";
-@import "components/user-table";
-@import "components/pagination";
-@import "components/user-actions-menu";
-@import "components/filter-modal";
-@import "components/user-info-content";
+@use "components/dashboard-header";
+@use "components/dashboard-sidebar";
+@use "components/summary-card";
+@use "components/user-table";
+@use "components/pagination";
+@use "components/user-actions-menu";
+@use "components/filter-modal";
+@use "components/user-info-content";
 
-@import "pages/login";
-@import "pages/users";
-@import "pages/user-details-page";
+@use "pages/login";
+@use "pages/users";
+@use "pages/user-details-page";

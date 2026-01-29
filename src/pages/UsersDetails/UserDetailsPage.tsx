@@ -3,11 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import StarFilled from "../../assets/icons/star-filled.png";
 import StarOutline from "../../assets/icons/star-outline.png";
 import UserInfoContent from "../../components/UserInfoContent";
+import type { User } from "../../types/user";
 
 const UserDetails: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [user, setUser] = useState<any>(null); 
+  // const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("General Details");
 
@@ -25,10 +27,13 @@ const UserDetails: React.FC = () => {
       try {
         setLoading(true);
         const response = await fetch("/data/users.json");
-        const allUsers = await response.json();
+        // const allUsers = await response.json();
+
+        const allUsers: User[] = await response.json();
 
         // Find the specific user by ID
-        const selectedUser = allUsers.find((u: any) => u.id === id);
+        // const selectedUser = allUsers.find((u: any) => u.id === id);
+        const selectedUser = allUsers.find((u: User) => u.id === id);
 
         if (selectedUser) {
           setUser(selectedUser);
@@ -88,14 +93,14 @@ const UserDetails: React.FC = () => {
                 <path
                   d="M1.5 30.7997C1.93908 27.8403 3.25312 25.2465 5.43908 23.0201C8.2 20.2201 11.5327 18.8201 15.4391 18.8201C19.3455 18.8201 22.6799 20.2201 25.4391 23.0201C27.6391 25.2466 28.9656 27.8405 29.4188 30.7997M23.6 9.64048C23.6 11.867 22.8062 13.7733 21.2188 15.3609C19.6328 16.9609 17.7125 17.7609 15.4596 17.7609C13.2189 17.7609 11.3004 16.9609 9.70036 15.3609C8.11284 13.7734 7.31912 11.8671 7.31912 9.64048C7.31912 7.38736 8.11288 5.46688 9.70036 3.87968C11.3004 2.29376 13.2191 1.5 15.4596 1.5C17.7127 1.5 19.6332 2.29376 21.2188 3.87968C22.8063 5.4672 23.6 7.38748 23.6 9.64048Z"
                   stroke="#213F7D"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
             <div className="name-id">
-              <h3>{user.username}</h3> 
+              <h3>{user.username}</h3>
               <p>{user.id}</p>
             </div>
           </div>
@@ -135,7 +140,7 @@ const UserDetails: React.FC = () => {
       {/* Detailed Info Card */}
       <div className="details-content-card">
         {activeTab === "General Details" ? (
-       <UserInfoContent userData={user} />
+          <UserInfoContent userData={user} />
         ) : (
           <div className="empty-state">No data available for {activeTab}</div>
         )}
